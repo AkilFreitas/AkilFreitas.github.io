@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Tio David queremos 10!!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+        ></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/humanity/jquery-ui.css"/>
+        <link rel="stylesheet" href="ExemploJQueryUI.html" type="text/css">
+        <link rel="stylesheet" href="Jqueryui2.html" type="text/css"/>
+
+<h1><font face="sans-serif" color="#FF0000"> </font> <br/></h1>
+
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        ></script>
+        <style>
+           
+            .dragBlack{
+                 width: 50px;
+                 height:50px;
+                 background-color: black;
+                 color: #FFF;
+            }
+            
+            .redondoRed {
+                width: 50px;
+                height:50px;
+                background-color: red;
+                color: #FFF;
+ 
+   
+  
+}
+            .dragBlue{
+                 width: 50px;
+                 height: 50px;
+                 background-color: blue;
+                 color: #FFF;
+            }           
+           .redondoGreen {
+                width: 50px;
+                height:50px;
+                background-color: green;
+                color: #FFF;
+ 
+  
+}.redondoGray{
+                width: 50px;
+                height:50px;
+                background-color: gray;
+                color: #FFF;
+ 
+  
+}
+.redondo7{
+                width: 50px;
+                height:50px;
+                background-color: orange;
+                color: #FFF;
+ 
+  
+}
+
+.drag1B{
+                width: 70px;
+                height:70px;
+                border: solid black;
+                background-color: black;
+}
+.drag2B{
+                width: 70px;
+                height:70px;
+                border: solid black;
+                background-color: red;
+}
+
+.redondo1B{
+                width: 70px;
+                height:70px;
+                border: solid black;
+                background-color: blue;
+}
+.redondo2B{
+                width: 70px;
+                height:70px;
+                border: solid black;
+                background-color: green;
+}
+.redondo3B{
+                width: 70px;
+                height:70px;
+                border: solid black;
+                background-color: gray;
+}.redondo4B{
+                width: 70px;
+                height:70px;
+                border: solid black;
+                background-color: orange;
+}.butaun{
+                width:600px;
+                height: 80px;
+                position:absolute;
+                top:50%;
+                left:50%;
+                -webkit-transform:translate3d(-50%, -50%, 0);
+                -moz-transform:translate3d(-50%, -50%, 0);
+                transform:translate3d(-50%, -50%, 0);
+                
+}
+
+           
+        </style>
+        <script> 
+                var array;
+                var resposta;
+                var movimento;
+                var nivel = 1;
+                var intervalo;
+                var quantidade;               
+  
+                function iniciarComponentes(){
+                    painel = document.getElementById("painel");
+                    painel.innerHTML = 
+                            
+                                        "<div id=\"div1\" class=\"dragBlack\" style=\"top:30%;left: 20%;position: absolute; width: 50px;height: 50px\"></div>"+             
+                                        "<div id=\"div2\" class=\"redondoRed\" style=\"top:30%;left: 33%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                        "<div id=\"div3\" class=\"dragBlue\" style=\"top:30%;left: 46%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                        "<div id=\"div4\" class=\"redondoGreen\" style=\"top:30%;left: 59%;position: absolute; width: 50px;height: 50px\"></div>" +
+                                       
+                                        "<div id=\"div5\" class=\"drag1B\" style=\"top:50%;left: 46%;position: absolute; width:80px;height: 80px\"></div>"+
+                                        "<div id=\"div6\" class=\"drag2B\" style=\"top:50%;left: 59%;position: absolute; width: 80px;height: 80px\"></div>"+  
+                                        "<div id=\"div7\" class=\"redondo1B\" style=\"top:50%;left: 20%;position: absolute; width: 80px;height: 80px\"></div>"+
+                                        "<div id=\"div8\" class=\"redondo2B\" style=\"top:50%;left: 33%;position: absolute; width: 80px;height: 80px\"></div>";
+            
+            
+                                        
+                    
+                    
+                }
+                
+                function habilitarComponentes1(){
+                    $(".dragBlack").draggable({scope:"on1", revert: "invalid"});
+                    $('#div5').droppable({scope:"on1", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(1);
+                        incrementaMovimento();
+                       
+                    }});
+                    $(".redondoRed").draggable({scope:"on2", revert: "invalid"});
+                    $('#div6').droppable({scope:"on2", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(2);
+                        incrementaMovimento();
+                       
+                    }});
+                    
+                    $(".dragBlue").draggable({scope:"on3", revert: "invalid"}); 
+                    $('#div7').droppable({scope:"on3", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(3);
+                        incrementaMovimento();
+                       
+                    }});
+                    
+                    $(".redondoGreen").draggable({scope:"on4", revert: "invalid"});
+                    $('#div8').droppable({scope:"on4", tolerance:"fit",
+                    drop:function(event, ui){
+                    $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(4);
+                        incrementaMovimento();
+                       
+                    }});
+                }
+                
+                function iniciarComponentes2(){
+                    painel = document.getElementById("painel");
+                    painel.innerHTML = 
+                            
+                                        "<div id=\"div1\" class=\"dragBlack\" style=\"top:30%;left: 20%;position: absolute; width: 50px;height: 50px\"></div>"+             
+                                        "<div id=\"div2\" class=\"redondoRed\" style=\"top:30%;left: 33%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                        "<div id=\"div3\" class=\"dragBlue\" style=\"top:30%;left: 46%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                        "<div id=\"div4\" class=\"redondoGreen\" style=\"top:30%;left: 59%;position: absolute; width: 50px;height: 50px\"></div>" +
+                                        "<div id=\"div9\" class=\"redondoGray\" style=\"top:30%;left: 72%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                       
+                                        "<div id=\"div5\" class=\"drag1B\" style=\"top:50%;left: 46%;position: absolute; width:60px;height: 60px\"></div>"+
+                                        "<div id=\"div6\" class=\"drag2B\" style=\"top:50%;left: 72%;position: absolute; width: 60px;height: 60px\"></div>"+  
+                                        "<div id=\"div7\" class=\"redondo1B\" style=\"top:50%;left: 20%;position: absolute; width: 60px;height: 60px\"></div>"+
+                                        "<div id=\"div8\" class=\"redondo2B\" style=\"top:50%;left: 33%;position: absolute; width: 60px;height: 60px\"></div>"+
+                                        "<div id=\"div10\" class=\"redondo3B\" style=\"top:50%;left: 59%;position: absolute; width: 60px;height: 60px\"></div>";
+                                        
+                    
+                   
+                }
+                         
+                function habilitarComponentes2(){
+                     $(".dragBlack").draggable({scope:"on1", revert: "invalid"});
+                    $('#div5').droppable({scope:"on1", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(1);
+                        incrementaMovimento();
+                       
+                    }});
+                    $(".redondoRed").draggable({scope:"on2", revert: "invalid"});
+                    $('#div6').droppable({scope:"on2", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(2);
+                        incrementaMovimento();
+                       
+                    }});
+                    
+                    $(".dragBlue").draggable({scope:"on3", revert: "invalid"}); 
+                    $('#div7').droppable({scope:"on3", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(3);
+                        incrementaMovimento();
+                       
+                    }});
+                    
+                    $(".redondoGreen").draggable({scope:"on4", revert: "invalid"});
+                    $('#div8').droppable({scope:"on4", tolerance:"fit",
+                    drop:function(event, ui){
+                    $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(4);
+                        incrementaMovimento();
+                       
+                    }});
+                  $(".redondoGray").draggable({scope:"on5", revert: "invalid"});
+                    $('#div10').droppable({scope:"on5", tolerance:"fit",
+                    drop:function(event, ui){
+                    $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(5);
+                        incrementaMovimento();
+                       
+                    }});
+                }
+                
+                function iniciarComponentes3(){
+                    painel = document.getElementById("painel");
+                    painel.innerHTML = 
+                            
+                                        "<div id=\"div1\" class=\"dragBlack\" style=\"top:30%;left: 20%;position: absolute; width: 50px;height: 50px\"></div>"+             
+                                        "<div id=\"div2\" class=\"redondoRed\" style=\"top:30%;left: 70%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                        "<div id=\"div3\" class=\"dragBlue\" style=\"top:30%;left: 40%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                        "<div id=\"div4\" class=\"redondoGreen\" style=\"top:30%;left: 50%;position: absolute; width: 50px;height: 50px\"></div>" +
+                                        "<div id=\"div9\" class=\"redondoGray\" style=\"top:30%;left: 60%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                         "<div id=\"div11\" class=\"redondo7\" style=\"top:30%;left: 30%;position: absolute; width: 50px;height: 50px\"></div>"+
+                                         
+                                        "<div id=\"div5\" class=\"drag1B\" style=\"top:50%;left: 70%;position: absolute; width:60px;height: 60px\"></div>"+
+                                        "<div id=\"div6\" class=\"drag2B\" style=\"top:50%;left: 60%;position: absolute; width: 60px;height: 60px\"></div>"+  
+                                        "<div id=\"div7\" class=\"redondo1B\" style=\"top:50%;left: 20%;position: absolute; width: 60px;height: 60px\"></div>"+
+                                        "<div id=\"div8\" class=\"redondo2B\" style=\"top:50%;left: 30%;position: absolute; width: 60px;height: 60px\"></div>"+
+                                        "<div id=\"div10\" class=\"redondo3B\" style=\"top:50%;left: 50%;position: absolute; width: 60px;height: 60px\"></div>"+
+                                        "<div id=\"div12\" class=\"redondo4B\" style=\"top:50%;left: 40%;position: absolute; width: 60px;height: 60px\"></div>";
+                                        
+                    
+                   
+                }
+                
+                function habilitarComponentes3(){
+                     $(".dragBlack").draggable({scope:"on1", revert: "invalid"});
+                    $('#div5').droppable({scope:"on1", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(1);
+                        incrementaMovimento();
+                       
+                    }});
+                    $(".redondoRed").draggable({scope:"on2", revert: "invalid"});
+                    $('#div6').droppable({scope:"on2", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(2);
+                        incrementaMovimento();
+                       
+                    }});
+                    
+                    $(".dragBlue").draggable({scope:"on3", revert: "invalid"}); 
+                    $('#div7').droppable({scope:"on3", tolerance:"fit",
+                    drop:function(event, ui){
+                        $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(3);
+                        incrementaMovimento();
+                       
+                    }});
+                    
+                    $(".redondoGreen").draggable({scope:"on4", revert: "invalid"});
+                    $('#div8').droppable({scope:"on4", tolerance:"fit",
+                    drop:function(event, ui){
+                    $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(4);
+                        incrementaMovimento();
+                       
+                    }});
+                  $(".redondoGray").draggable({scope:"on5", revert: "invalid"});
+                    $('#div10').droppable({scope:"on5", tolerance:"fit",
+                    drop:function(event, ui){
+                    $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(5);
+                        incrementaMovimento();
+                       
+                    }});
+                 $(".redondo7").draggable({scope:"on5", revert: "invalid"});
+                    $('#div12').droppable({scope:"on5", tolerance:"fit",
+                    drop:function(event, ui){
+                    $('p').html(ui.position.left + " " + ui.position.top);
+                        resposta.push(6);
+                        incrementaMovimento();
+                       
+                    }});
+                
+                }
+                
+                function iniciarComponentesFinal(){
+                    painel = document.getElementById("painel");
+                    painel.innerHTML = 
+                            
+                     " <form action=\"index3.html\" method=\"get\"><button class=\"butaun\" type=\"submit\" formaction=\"index3.html\">Isso é mt fácil, CLIQUE AQUI para saber se é bom mesmo.</button></form>";
+                    
+                }
+                
+                function incrementaMovimento(){
+                    if(movimento === quantidade){
+                        respostaCerta = false;
+                        if(nivel === 1 || nivel === 2){
+                            respostaCerta = array[0] === resposta[0] && array[1] === resposta[1] && array[2] === resposta[2] && array[3] === resposta[3];
+                        }if(nivel === 3 || nivel === 4){
+                            respostaCerta = array[0] === resposta[0] && array[1] === resposta[1] && array[2] === resposta[2] && array[3] === resposta[3] && array[4] === resposta[4];
+                        }else{
+                            respostaCerta = array[0] === resposta[0] && array[1] === resposta[1] && array[2] === resposta[2] && array[3] === resposta[3] && array[4] === resposta[4]&& array[5] === resposta[5];
+                        }
+                        
+                        if(respostaCerta){
+                            alert(nivel + "ºNÍVEL COMPLETO");
+                            nivel += 1;
+                        }else{
+                             alert("VOCÊ ERROU,VOLTE PARA O COMEÇO");                            
+                             nivel = 1;
+                             
+                        }
+                        
+                        iniciarNivel();
+                       
+                        
+                    }else{
+                        movimento += 1;    
+                    }
+                }
+          
+                function piscar(decisao2, delay) {
+                        
+                        if(decisao2===1){
+                           setTimeout(function(){
+                               $(".drag1B").fadeOut(0);
+                               $(".drag1B").fadeIn(1000);
+                           },delay);
+                           
+                  
+                        }else if(decisao2===2){
+                            setTimeout(function(){
+                                $(".drag2B").fadeOut(0);
+                                $(".drag2B").fadeIn(1000);
+                            },delay);
+                          
+                        }
+                        else if(decisao2===3){
+                            setTimeout(function(){
+                                $(".redondo1B").fadeOut(0);
+                                $(".redondo1B").fadeIn(1000);
+                              },delay);
+                           
+                          
+                        }else if(decisao2===4){
+                            setTimeout(function(){
+                                $(".redondo2B").fadeOut(0);
+                                $(".redondo2B").fadeIn(1000);
+                            },delay);
+                        }else if(decisao2===5){
+                             setTimeout(function(){
+                                $(".redondo3B").fadeOut(0);
+                                $(".redondo3B").fadeIn(1000);
+                            },delay);
+                        }else{
+                              setTimeout(function(){
+                                $(".redondo4B").fadeOut(0);
+                                $(".redondo4B").fadeIn(1000);
+                            },delay);
+                        }
+                }      
+               
+               
+               function iniciarNivel(){
+                   var delay = 1000;
+                   resposta = [];
+                   movimento = 1; 
+                    
+                   if(nivel === 1){
+                       iniciarComponentes();
+                       quantidade = 4;
+                       intervalo = 1000;                       
+                   }
+                   if(nivel === 2){
+                       iniciarComponentes();
+                        quantidade = 4;
+                        intervalo = 500;
+                   }
+                   if(nivel === 3){
+                       iniciarComponentes2();
+                       quantidade = 5;
+                       intervalo = 800;
+                   }
+                   if(nivel === 4){
+                       iniciarComponentes2();
+                        quantidade = 5;
+                        intervalo = 500;
+                   }if(nivel===5){
+                        iniciarComponentes3();
+                        quantidade = 6;
+                        intervalo = 380;
+                   }                  
+                   if(nivel === 6){
+                       alert("Parabéns! Fim de Jogo!");
+                       iniciarComponentesFinal();
+                   }
+                    
+                   array = criarNumerosAleatorios(quantidade); 
+                    
+                    for(var x = 0; x<quantidade; x++){
+                        piscar(array[x], delay);
+                        delay += intervalo;
+                    }
+                    
+                    setTimeout(function(){habilitarComponentes();}, delay);
+                };
+                                                    
+                
+                function habilitarComponentes(){
+                    if(nivel === 1 || nivel === 2){
+                        habilitarComponentes1();
+                    }if(nivel === 3 || nivel===4){
+                        habilitarComponentes2();
+                    }else{
+                        habilitarComponentes3();
+                    }
+                }
+                
+                function criarNumerosAleatorios(maximo){
+                    var i, arr = [];
+                    for (var i = 0; i < maximo; i++) {
+                        arr[i] = i + 1;
+                    }
+                    
+                    var p, n, tmp;
+                    for (p = arr.length; p;) {
+                        n = Math.random() * p-- | 0;
+                        tmp = arr[n];
+                        arr[n] = arr[p];
+                        arr[p] = tmp;
+                    }
+                    
+                    return arr;
+                    
+                }
+                
+                 
+
+                
+                 $ (function (){
+    
+                    iniciarNivel();
+                });          
+                 
+                
+        </script>
+           
+    </head>
+    <body onload="iniciarComponentes();">
+    
+       
+        <h1><font face="Impact" color="#FF0000" size="45"> RANDOM</font> <br /></h1>
+        <div><img src="autumn-1649440__340.jpg" style="width:1500px;height: 600px"></div>
+        <div style="width:100%;height:100%;" id="painel" onchange="alert('OK')">
+            
+        
+        </div>    
+             
+    </body>
+</html>
